@@ -272,6 +272,7 @@ const takeTopK = (data: Record<string, number>, k = TAKE_TOP_K) => {
   return pipe(
     data,
     entries(),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     sortBy(([_, count]) => -count),
     take(k),
     fromEntries(),

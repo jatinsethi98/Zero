@@ -75,7 +75,7 @@ type EditorAction =
   | { type: 'TOGGLE_NODE'; payload: boolean }
   | { type: 'TOGGLE_COLOR'; payload: boolean }
   | { type: 'TOGGLE_LINK'; payload: boolean }
-  | { type: 'TOGGLE_AI'; payload: boolean };
+  
 
 function editorReducer(state: EditorState, action: EditorAction): EditorState {
   switch (action.type) {
@@ -85,8 +85,7 @@ function editorReducer(state: EditorState, action: EditorAction): EditorState {
       return { ...state, openColor: action.payload };
     case 'TOGGLE_LINK':
       return { ...state, openLink: action.payload };
-    case 'TOGGLE_AI':
-      return { ...state, openAI: action.payload };
+
     default:
       return state;
   }
@@ -106,7 +105,7 @@ export default function Editor({
   myInfo,
   readOnly,
 }: EditorProps) {
-  const [state, dispatch] = useReducer(editorReducer, {
+  const [state, _dispatch] = useReducer(editorReducer, {
     openNode: false,
     openColor: false,
     openLink: false,
@@ -356,7 +355,7 @@ export default function Editor({
           {/* Replace the default editor menu with just our TextButtons */}
           <EditorMenu
             open={openAI}
-            onOpenChange={(open) => dispatch({ type: 'TOGGLE_AI', payload: open })}
+    
           >
             {/* Empty children to satisfy the type requirement */}
             <div></div>

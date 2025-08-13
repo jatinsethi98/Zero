@@ -8,6 +8,7 @@ import { EProviders } from '../../types';
 export class OutlookSubscriptionFactory extends BaseSubscriptionFactory {
   readonly providerId = EProviders.microsoft;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async subscribe(_: { body: SubscriptionData }): Promise<Response> {
     // TODO: Implement Outlook subscription logic
     // This will handle Microsoft Graph API subscriptions for Outlook
@@ -15,12 +16,14 @@ export class OutlookSubscriptionFactory extends BaseSubscriptionFactory {
     throw new Error('Outlook subscription not implemented yet');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async unsubscribe(_: { body: UnsubscriptionData }): Promise<Response> {
     // TODO: Implement Outlook unsubscription logic
 
     throw new Error('Outlook unsubscription not implemented yet');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async verifyToken(_: string): Promise<boolean> {
     // TODO: Implement Microsoft Graph token verification
 

@@ -16,7 +16,7 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getThread, getZeroAgent } from '../../lib/server-utils';
-import { composeEmail } from '../../trpc/routes/ai/compose';
+
 import { getCurrentDateContext } from '../../lib/prompts';
 import { connection } from '../../db/schema';
 import { FOLDERS } from '../../lib/utils';

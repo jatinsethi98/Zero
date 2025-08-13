@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error - @barkleapp/css-sanitizer types are not available
 import { CssSanitizer } from '@barkleapp/css-sanitizer';
 import sanitizeHtml from 'sanitize-html';
 import * as cheerio from 'cheerio';

@@ -14,6 +14,7 @@ export const shortcutRouter = router({
       const { sessionUser } = ctx;
       const { shortcuts } = input;
       const db = await getZeroDB(sessionUser.id);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await db.insertUserHotkeys(shortcuts as any);
     }),
 });

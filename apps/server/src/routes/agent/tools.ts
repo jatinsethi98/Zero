@@ -1,7 +1,7 @@
 import { getCurrentDateContext, GmailSearchAssistantSystemPrompt } from '../../lib/prompts';
 import { getThread, getZeroAgent } from '../../lib/server-utils';
 import type { IGetThreadResponse } from '../../lib/driver/types';
-import { composeEmail } from '../../trpc/routes/ai/compose';
+
 import { perplexity } from '@ai-sdk/perplexity';
 import { colors } from '../../lib/prompts';
 import { openai } from '@ai-sdk/openai';
@@ -12,6 +12,7 @@ import { z } from 'zod';
 
 type ModelTypes = 'summarize' | 'general' | 'chat' | 'vectorize';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const models: Record<ModelTypes, any> = {
   summarize: '@cf/facebook/bart-large-cnn',
   general: 'llama-3.3-70b-instruct-fp8-fast',

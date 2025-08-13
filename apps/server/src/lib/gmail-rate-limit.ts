@@ -6,12 +6,14 @@ import { Effect, Duration, Schedule } from 'effect';
  *  – HTTP 403 with reason == userRateLimitExceeded or quotaExceeded
  */
 export function isRateLimit(err: unknown): boolean {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const e: any = err || {};
   const status = e.code ?? e.status ?? e.response?.status;
 
   if (status === 429) return true;
   if (status === 403) {
     const errors = e.errors ?? e.response?.data?.error?.errors ?? [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return errors.some((x: any) =>
       [
         'userRateLimitExceeded',

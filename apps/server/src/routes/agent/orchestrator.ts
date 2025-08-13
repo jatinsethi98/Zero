@@ -29,6 +29,7 @@ export class ToolOrchestrator {
   /**
    * Creates a streaming agent wrapper for tools that should stream responses directly
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createStreamingAgent(toolName: string, originalTool: any) {
     if (!this.isStreamingTool(toolName)) {
       return originalTool;

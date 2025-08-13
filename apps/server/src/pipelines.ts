@@ -620,7 +620,9 @@ export class WorkflowRunner extends DurableObject<ZeroEnv> {
           threadId: threadId.toString(),
           thread,
           foundConnection,
-          results: new Map<string, any>(),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        results: new Map<string, any>(),
         };
 
         // Execute configured workflows using the workflow engine
@@ -783,7 +785,8 @@ export class WorkflowRunner extends DurableObject<ZeroEnv> {
 
         let workflowResults;
         try {
-          const allResults = new Map<string, any>();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const allResults = new Map<string, any>();
           const allErrors = new Map<string, Error>();
 
           const workflowNames = workflowEngine.getWorkflowNames();
@@ -1091,7 +1094,8 @@ export class WorkflowRunner extends DurableObject<ZeroEnv> {
         if (threadsAdded.size > 0) {
           const threadWorkflowParams = Array.from(threadsAdded);
 
-          const syncResults: Array<{ threadId: string; result: any }> = [];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const syncResults: Array<{ threadId: string; result: any }> = [];
           const syncErrors: Array<{ threadId: string; error: Error }> = [];
 
           for (const threadId of threadWorkflowParams) {

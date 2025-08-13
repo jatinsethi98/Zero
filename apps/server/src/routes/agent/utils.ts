@@ -33,7 +33,7 @@ function isValidToolName<K extends PropertyKey, T extends object>(
 export async function processToolCalls<
   Tools extends ToolSet,
   ExecutableTools extends {
-    [Tool in keyof Tools as Tools[Tool] extends { execute: Function } ? never : Tool]: Tools[Tool];
+    [Tool in keyof Tools as Tools[Tool] extends { execute: (...args: unknown[]) => unknown } ? never : Tool]: Tools[Tool];
   },
 >(
   {
@@ -48,7 +48,7 @@ export async function processToolCalls<
     [K in keyof Tools & keyof ExecutableTools]?: (
       args: z.infer<ExecutableTools[K]['parameters']>,
       context: ToolExecutionOptions,
-      // biome-ignore lint/suspicious/noExplicitAny: vibes
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) => Promise<any>;
   },
 ): Promise<Message[]> {
@@ -68,7 +68,7 @@ export async function processToolCalls<
       // Only continue if we have an execute function for the tool (meaning it requires confirmation) and it's in a 'result' state
       if (!(toolName in executeFunctions) || toolInvocation.state !== 'result') return part;
 
-      // biome-ignore lint/suspicious/noExplicitAny: vibes
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let result: any;
 
       if (toolInvocation.result === APPROVAL.YES) {

@@ -43,9 +43,11 @@ export const messageToXML = async (message: ParsedMessage) => {
     const safeDate = escapeXml(message.receivedOn || '');
 
     const toElements = (message.to || [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((r: any) => `<to>${escapeXml(r?.email || '')}</to>`)
       .join('');
     const ccElements = (message.cc || [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((r: any) => `<cc>${escapeXml(r?.email || '')}</cc>`)
       .join('');
 
@@ -71,6 +73,7 @@ export const messageToXML = async (message: ParsedMessage) => {
 export const getParticipants = (messages: ParsedMessage[]) => {
   const participants = new Map<string, { name?: string; email: string }>();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setIfUnset = (sender: any) => {
     if (!sender?.email) return;
     if (!participants.has(sender.email)) {

@@ -43,6 +43,7 @@ export const sanitizeTipTapHtml = async (
       Html,
       {},
       React.createElement('div', { dangerouslySetInnerHTML: { __html: clean } }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any,
   );
 

@@ -17,6 +17,7 @@ import { env } from './env';
 
 const showLogs = true;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const log = (message: string, ...args: any[]) => {
   if (showLogs) {
     console.log(message, ...args);
@@ -115,6 +116,7 @@ export const getEmbeddingVector = async (text: string) => {
         },
       },
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const embeddingVector = (embeddingResponse as any).data?.[0];
     return embeddingVector ?? null;
   } catch (error) {

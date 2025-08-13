@@ -7,20 +7,19 @@ import {
   SuperSearchEmail,
   WelcomeEmail,
 } from './react-emails/email-sequences';
-import { createAuthMiddleware, phoneNumber, jwt, bearer, mcp } from 'better-auth/plugins';
+import { createAuthMiddleware, jwt, bearer, mcp } from 'better-auth/plugins';
 import { type Account, betterAuth, type BetterAuthOptions } from 'better-auth';
+
 import { getBrowserTimezone, isValidTimezone } from './timezones';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { getSocialProviders } from './auth-providers';
-import { redis, resend, twilio } from './services';
-import { getContext } from 'hono/context-storage';
+import { redis, resend } from './services';
 import { dubAnalytics } from '@dub/better-auth';
 import { defaultUserSettings } from './schemas';
 import { disableBrainFunction } from './brain';
 import { APIError } from 'better-auth/api';
 import { getZeroDB } from './server-utils';
 import { type EProviders } from '../types';
-import type { HonoContext } from '../ctx';
 import { env } from '../env';
 import { createDriver } from './driver';
 import { createDb } from '../db';
@@ -39,6 +38,7 @@ const scheduleCampaign = (userInfo: { address: string; name: string }) =>
             from: '0.email <onboarding@0.email>',
             to: userInfo.address,
             subject,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             react: react as any,
             ...(scheduledAt && { scheduledAt }),
           })
@@ -144,7 +144,7 @@ const connectionHandlerHook = async (account: Account) => {
 };
 
 export const createAuth = () => {
-  const twilioClient = twilio();
+
   const dub = new Dub();
 
   return betterAuth({
@@ -157,18 +157,7 @@ export const createAuth = () => {
       }),
       jwt(),
       bearer(),
-      phoneNumber({
-        sendOTP: async ({ code, phoneNumber }) => {
-          await twilioClient.messages
-            .send(phoneNumber, `Your verification code is: ${code}, do not share it with anyone.`)
-            .catch((error) => {
-              console.error('Failed to send OTP', error);
-              throw new APIError('INTERNAL_SERVER_ERROR', {
-                message: `Failed to send OTP, ${error.message}`,
-              });
-            });
-        },
-      }),
+
     ],
     user: {
       deleteUser: {
@@ -191,13 +180,7 @@ export const createAuth = () => {
           if (!request) throw new APIError('BAD_REQUEST', { message: 'Request object is missing' });
           const db = await getZeroDB(user.id);
           const connections = await db.findManyConnections();
-          const context = getContext<HonoContext>();
-          try {
-            await context.var.autumn.customers.delete(user.id);
-          } catch (error) {
-            console.error('Failed to delete Autumn customer:', error);
-            // Continue with deletion process despite Autumn failure
-          }
+          
 
           const revokedAccounts = (
             await Promise.allSettled(

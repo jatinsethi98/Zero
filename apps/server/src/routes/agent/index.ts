@@ -292,6 +292,7 @@ export type FolderSyncSuccess = FolderSyncResult;
 export type FolderSyncFailure = FolderSyncErrors;
 
 const _migrations = Object.fromEntries(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Object.entries(migrations.migrations).map(([_, value], index) => [index + 1, [value]]),
 );
 

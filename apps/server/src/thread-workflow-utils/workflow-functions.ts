@@ -15,6 +15,7 @@ import { getPromptName } from '../pipelines';
 import { env } from 'cloudflare:workers';
 import { Effect } from 'effect';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type WorkflowFunction = (context: WorkflowContext) => Promise<any>;
 
 export const workflowFunctions: Record<string, WorkflowFunction> = {
@@ -136,7 +137,8 @@ export const workflowFunctions: Record<string, WorkflowFunction> = {
       batches.push(messageIds.slice(i, i + batchSize));
     }
 
-    const getExistingMessagesBatch = (batch: string[]): Effect.Effect<any[], never> =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getExistingMessagesBatch = (batch: string[]): Effect.Effect<any[], never> =>
       Effect.tryPromise(async () => {
         console.log('[WORKFLOW_FUNCTIONS] Fetching batch of', batch.length, 'message IDs');
         return await env.VECTORIZE_MESSAGE.getByIds(batch);
@@ -158,7 +160,8 @@ export const workflowFunctions: Record<string, WorkflowFunction> = {
 
     const existingMessages = await Effect.runPromise(program);
 
-    const existingMessageIds = new Set(existingMessages.map((message: any) => message.id));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const existingMessageIds = new Set(existingMessages.map((message: any) => message.id));
     const messagesToVectorize = context.thread.messages.filter(
       (message) => !existingMessageIds.has(message.id),
     );
@@ -305,7 +308,8 @@ export const workflowFunctions: Record<string, WorkflowFunction> = {
       return { existingSummary: null };
     }
 
-    const { summary, lastMsg } = metadata as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { summary, lastMsg } = metadata as any;
     if (typeof summary !== 'string' || typeof lastMsg !== 'string') {
       console.warn(
         '[WORKFLOW_FUNCTIONS] Metadata missing required string properties (summary, lastMsg), returning null',
@@ -406,7 +410,8 @@ export const workflowFunctions: Record<string, WorkflowFunction> = {
       const { stub: agent } = await getZeroAgent(context.connectionId);
       const userTopics = await agent.getUserTopics();
       if (userTopics.length > 0) {
-        userLabels = userTopics.map((topic: any) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+userLabels = userTopics.map((topic: any) => ({
           name: topic.topic,
           usecase: topic.usecase,
         }));

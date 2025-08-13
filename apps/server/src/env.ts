@@ -68,17 +68,14 @@ export type ZeroEnv = {
   GROQ_API_KEY: string;
   EARLY_ACCESS_ENABLED: string;
   GOOGLE_GENERATIVE_AI_API_KEY: string;
-  AUTUMN_SECRET_KEY: string;
   AI_SYSTEM_PROMPT: string;
   PERPLEXITY_API_KEY: string;
-  TWILIO_ACCOUNT_SID: string;
-  TWILIO_AUTH_TOKEN: string;
-  TWILIO_PHONE_NUMBER: string;
+
   VITE_PUBLIC_ELEVENLABS_AGENT_ID: string;
   REACT_SCAN: string;
   MICROSOFT_CLIENT_ID: string;
   MICROSOFT_CLIENT_SECRET: string;
-  VOICE_SECRET: string;
+
   ARCADE_API_KEY: string;
   OPENAI_MODEL: string;
   OPENAI_MINI_MODEL: string;

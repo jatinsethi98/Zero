@@ -558,9 +558,11 @@ export const mailRouter = router({
 
       const mailWithAttachments = {
         ...mail,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         attachments: attachments?.map((att: any) =>
           typeof att?.arrayBuffer === 'function' ? att : toAttachmentFiles([att])[0],
         ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as typeof mail & { attachments: any[] };
 
       if (draftId) {

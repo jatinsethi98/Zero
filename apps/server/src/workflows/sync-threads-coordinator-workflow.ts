@@ -75,6 +75,7 @@ export class SyncThreadsCoordinatorWorkflow extends WorkflowEntrypoint<
     const { maxCount, shouldLoop, foundConnection } = setupResult as {
       maxCount: number;
       shouldLoop: boolean;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       foundConnection: any;
     };
     const driver = connectionToDriver(foundConnection);
@@ -153,6 +154,7 @@ export class SyncThreadsCoordinatorWorkflow extends WorkflowEntrypoint<
 
       // Update result with this page's data
       if (pageResult?.result) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const workflowResult = pageResult.result as any;
         result.pageWorkflowResults.push({
           pageNumber,

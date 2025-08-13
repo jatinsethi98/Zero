@@ -1,5 +1,5 @@
 import type { IGetThreadResponse } from '../lib/driver/types';
-import { composeEmail } from '../trpc/routes/ai/compose';
+
 import { type ParsedMessage } from '../types';
 import { connection } from '../db/schema';
 

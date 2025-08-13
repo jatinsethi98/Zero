@@ -22,6 +22,7 @@ export const getZeroDB = async (userId: string) => {
 };
 
 class MockExecutionContext implements ExecutionContext {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async waitUntil(promise: Promise<any>) {
     try {
       await promise;
@@ -30,6 +31,7 @@ class MockExecutionContext implements ExecutionContext {
     }
   }
   passThroughOnException(): void {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any;
 }
 
@@ -365,6 +367,7 @@ export const forceReSync = async (connectionId: string) => {
 };
 
 type GetThreadsAccumulator = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   threads: any[];
   nextPageToken: string | null;
   maxResults: number;
@@ -580,6 +583,7 @@ export const verifyToken = async (token: string) => {
     throw new Error(`Failed to verify token: ${await response.text()}`);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data = (await response.json()) as any;
   return !!data;
 };

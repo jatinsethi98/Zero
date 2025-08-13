@@ -8,6 +8,7 @@ export type WorkflowContext = {
   threadId: string;
   thread: IGetThreadResponse;
   foundConnection: typeof connection.$inferSelect;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   results?: Map<string, any>;
 };
 
@@ -17,6 +18,7 @@ export type WorkflowStep = {
   description: string;
   enabled: boolean;
   condition?: (context: WorkflowContext) => boolean | Promise<boolean>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   action: (context: WorkflowContext) => Promise<any>;
   errorHandling?: 'continue' | 'fail';
   maxRetries?: number;
@@ -42,13 +44,16 @@ export class WorkflowEngine {
   async executeWorkflow(
     workflowName: string,
     context: WorkflowContext,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     existingResults?: Map<string, any>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Promise<{ results: Map<string, any>; errors: Map<string, Error> }> {
     const workflow = this.workflows.get(workflowName);
     if (!workflow) {
       throw new Error(`Workflow "${workflowName}" not found`);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const results = new Map<string, any>(existingResults || []);
     const errors = new Map<string, Error>();
 
@@ -84,12 +89,15 @@ export class WorkflowEngine {
     return { results, errors };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async executeWorkflowChain(
     workflowNames: string[],
     context: WorkflowContext,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Promise<{ results: Map<string, any>; errors: Map<string, Error> }> {
-    let sharedResults = new Map<string, any>();
-    let allErrors = new Map<string, Error>();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sharedResults = new Map<string, any>();
+    const allErrors = new Map<string, Error>();
 
     for (const workflowName of workflowNames) {
       console.log(`[WORKFLOW_ENGINE] Executing workflow in chain: ${workflowName}`);

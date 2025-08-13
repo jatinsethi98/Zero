@@ -16,6 +16,7 @@ export const settingsRouter = router({
 
       const { sessionUser } = ctx;
       const db = await getZeroDB(sessionUser.id);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const result: any = await db.findUserSettings();
 
       // Returning null here when there are no settings so we can use the default settings with timezone from the browser
@@ -34,12 +35,15 @@ export const settingsRouter = router({
   save: privateProcedure.input(userSettingsSchema.partial()).mutation(async ({ ctx, input }) => {
     const { sessionUser } = ctx;
     const db = await getZeroDB(sessionUser.id);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const existingSettings: any = await db.findUserSettings();
 
     if (existingSettings) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const newSettings: any = { ...(existingSettings.settings as UserSettings), ...input };
       await db.updateUserSettings(newSettings);
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await db.insertUserSettings({ ...(defaultUserSettings as any), ...input });
     }
 

@@ -78,9 +78,11 @@ export class SyncThreadsWorkflow extends WorkflowEntrypoint<ZeroEnv, SyncThreads
     });
 
     const { maxCount, foundConnection } = setupResult as {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       driver: any;
       maxCount: number;
       shouldLoop: boolean;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       foundConnection: any;
     };
     const driver = connectionToDriver(foundConnection);

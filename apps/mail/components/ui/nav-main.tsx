@@ -5,7 +5,7 @@ import { LabelDialog } from '@/components/labels/label-dialog';
 import { useActiveConnection } from '@/hooks/use-connections';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Intercom, { show } from '@intercom/messenger-js-sdk';
-import { MessageSquare, OldPhone } from '../icons/icons';
+import { MessageSquare } from '../icons/icons';
 import { useSidebar } from '../context/sidebar-context';
 import { useTRPC } from '@/providers/query-provider';
 import { type NavItem } from '@/config/navigation';
@@ -183,7 +183,7 @@ export function NavMain({ items }: NavMainProps) {
               tooltip={state === 'collapsed' ? m['common.commandPalette.groups.help']() : undefined}
               className="hover:bg-subtleWhite flex cursor-pointer items-center dark:hover:bg-[#202020]"
             >
-              <OldPhone className="relative mr-2.5 h-2 w-2 fill-[#8F8F8F]" />
+              
               <p className="relative bottom-0.5 mt-0.5 truncate text-[13px]">Live Support</p>
             </SidebarMenuButton>
             <NavItem

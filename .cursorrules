@@ -1,0 +1,39 @@
+# Cursor Rules for Zero Project
+
+## Development Environment Context
+
+### Dev Server Behavior
+When running `pnpm dev`, the development environment starts two concurrent processes:
+1. **Mail App** (`apps/mail`): React Router dev server on port 3000
+2. **Server App** (`apps/server`): Wrangler dev server on port 8787
+
+### Important: Non-Terminating Error Handling
+Both dev servers are configured as persistent processes that continue running even when errors occur. This means:
+- Errors are logged to the console but don't cause the process to terminate
+- You need to manually monitor console output to catch errors
+- The process appears to "hang" when waiting for it to terminate after errors
+- No automatic error detection or process termination
+
+### Recommended Development Commands
+- `pnpm dev:monitored` - Run both apps with error handling (terminates all on any error)
+- `pnpm dev:mail` - Run just the mail app for isolated testing
+- `pnpm dev:server` - Run just the server app for isolated testing
+- `pnpm dev` - Original command (persistent, may hang on errors)
+
+### For Testing/Error Detection
+When you need to test changes and catch errors quickly, use:
+```bash
+pnpm dev:monitored
+```
+This will terminate all processes if any encounter an error, making it easier to catch issues.
+
+### Project Structure
+- `apps/mail/` - React Router frontend application
+- `apps/server/` - Wrangler/Cloudflare Workers backend
+- Both run concurrently in development mode
+- See `DEVELOPMENT.md` for detailed configuration and troubleshooting
+
+### Common Issues
+- Dev servers don't terminate on errors - monitor console output carefully
+- Use `dev:monitored` for better error detection
+- Consider running apps separately (`dev:mail` and `dev:server`) for isolated debugging

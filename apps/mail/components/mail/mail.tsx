@@ -392,7 +392,6 @@ export function MailLayout() {
 
   return (
     <TooltipProvider delayDuration={0}>
-
       <div className="rounded-inherit z-5 relative flex p-0 md:mr-0.5 md:mt-1">
         <ResizablePanelGroup
           direction="horizontal"
@@ -552,9 +551,6 @@ export function MailLayout() {
               </div>
             </div>
           )}
-
-  
-
         </ResizablePanelGroup>
       </div>
     </TooltipProvider>

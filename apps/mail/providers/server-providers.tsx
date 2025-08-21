@@ -6,7 +6,5 @@ export function ServerProviders({
   children,
   connectionId,
 }: PropsWithChildren<{ connectionId: string | null }>) {
-  return (
-    <QueryProvider connectionId={connectionId}>{children}</QueryProvider>
-  );
+  return <QueryProvider connectionId={connectionId}>{children}</QueryProvider>;
 }

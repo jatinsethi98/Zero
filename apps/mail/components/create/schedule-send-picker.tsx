@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Clock } from 'lucide-react';
-import { format, isValid } from 'date-fns';
 import { useState, useEffect } from 'react';
+import { format, isValid } from 'date-fns';
+import { Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
@@ -82,7 +82,7 @@ export const ScheduleSendPicker: React.FC<ScheduleSendPickerProps> = ({
         <button
           type="button"
           className={cn(
-            'flex items-center gap-1 rounded-md border px-2 py-1 text-sm hover:bg-accent',
+            'hover:bg-accent flex items-center gap-1 rounded-md border px-2 py-1 text-sm',
             className,
           )}
         >
@@ -109,7 +109,7 @@ export const ScheduleSendPicker: React.FC<ScheduleSendPickerProps> = ({
             type="datetime-local"
             value={displayValue}
             onChange={handleChange}
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:opacity-0"
+            className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:opacity-0"
           />
         </div>
       </PopoverContent>

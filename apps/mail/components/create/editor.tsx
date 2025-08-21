@@ -74,8 +74,7 @@ interface EditorState {
 type EditorAction =
   | { type: 'TOGGLE_NODE'; payload: boolean }
   | { type: 'TOGGLE_COLOR'; payload: boolean }
-  | { type: 'TOGGLE_LINK'; payload: boolean }
-  
+  | { type: 'TOGGLE_LINK'; payload: boolean };
 
 function editorReducer(state: EditorState, action: EditorAction): EditorState {
   switch (action.type) {
@@ -353,10 +352,7 @@ export default function Editor({
           </EditorCommand>
 
           {/* Replace the default editor menu with just our TextButtons */}
-          <EditorMenu
-            open={openAI}
-    
-          >
+          <EditorMenu open={openAI}>
             {/* Empty children to satisfy the type requirement */}
             <div></div>
           </EditorMenu>

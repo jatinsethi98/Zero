@@ -396,6 +396,8 @@
   },
   "navigation": {
     "sidebar": {
+      "dashboard": "Dashboard",
+      "search": "Search",
       "inbox": "Inbox",
       "drafts": "Drafts",
       "sent": "Sent",

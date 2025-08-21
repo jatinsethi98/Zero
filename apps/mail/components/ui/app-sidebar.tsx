@@ -16,7 +16,6 @@ import { PencilCompose } from '../icons/icons';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
-
 import { useStats } from '@/hooks/use-stats';
 import { useLocation } from 'react-router';
 
@@ -27,16 +26,12 @@ import { NavMain } from './nav-main';
 import { useQueryState } from 'nuqs';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
   const [_showUpgrade, _setShowUpgrade] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('hideUpgradeCard') !== 'true';
     }
     return true;
   });
-
-
-
 
   const { data: stats } = useStats();
 
@@ -101,8 +96,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <NavMain items={navItems} />
             </div>
           </SidebarContent>
-
-
 
           <SidebarFooter className={`px-0 pb-0 ${state === 'collapsed' ? 'md:px-2' : 'md:px-4'}`}>
             <NavMain items={bottomNavItems} />

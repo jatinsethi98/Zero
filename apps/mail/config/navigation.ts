@@ -10,10 +10,10 @@ import {
   Users,
   ArrowLeft,
   Danger,
-  Sheet,
   Plane2,
   LockIcon,
   Clock,
+  Search,
 } from '@/components/icons/icons';
 import { MessageSquareIcon } from 'lucide-react';
 import { m } from '@/paraglide/messages';
@@ -22,7 +22,7 @@ export interface NavItem {
   id?: string;
   title: string;
   url: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   badge?: number;
   isBackButton?: boolean;
   isSettingsButton?: boolean;
@@ -46,6 +46,18 @@ export const navigationConfig: Record<string, NavConfig> = {
   mail: {
     path: '/mail',
     sections: [
+      {
+        title: 'Dashboard',
+        items: [
+          {
+            id: 'search',
+            title: m['navigation.sidebar.search'](),
+            url: '/mail/search',
+            icon: Search,
+            shortcut: 'g + s',
+          },
+        ],
+      },
       {
         title: 'Core',
         items: [
@@ -167,11 +179,6 @@ export const navigationConfig: Record<string, NavConfig> = {
             title: m['navigation.settings.appearance'](),
             url: '/settings/appearance',
             icon: Stars,
-          },
-          {
-            title: m['navigation.settings.labels'](),
-            url: '/settings/labels',
-            icon: Sheet,
           },
           {
             title: m['navigation.settings.categories'](),

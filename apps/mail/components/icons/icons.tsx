@@ -1714,8 +1714,6 @@ export const ArrowsPointingOut = ({ className }: { className?: string }) => (
   </svg>
 );
 
-
-
 export const PurpleThickCheck = ({ className }: { className?: string }) => (
   <svg
     width="8"
@@ -1745,5 +1743,3 @@ export const Printer = ({ className }: { className?: string }) => (
     />
   </svg>
 );
-
-

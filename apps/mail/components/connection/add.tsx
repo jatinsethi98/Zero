@@ -16,7 +16,6 @@ import { motion } from 'motion/react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 
-
 export const AddConnectionDialog = ({
   children,
   className,
@@ -26,10 +25,7 @@ export const AddConnectionDialog = ({
   className?: string;
   onOpenChange?: (open: boolean) => void;
 }) => {
-
   const pathname = useLocation().pathname;
-
-
 
   return (
     <Dialog onOpenChange={onOpenChange}>
